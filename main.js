@@ -6,7 +6,7 @@ let pcScore = 0
 let rounds = 0
 
 function getComputerChoice(){
-    const pcChoice = Math.floor(Math.random()*(Math.floor(1) - Math.ceil(4)) + Math.ceil(4))
+    const pcChoice = Math.floor(Math.random() * 3) + 1
     switch(pcChoice){
         case 1:
             return rock
@@ -36,7 +36,7 @@ function getUserChoice(){
 function playRound(){
     const pcChoice = getComputerChoice()
     const userChoice = getUserChoice()
-    const roundResults = (pcChoice - userChoice)%3
+    const roundResults = (pcChoice - userChoice + 3)%3
     function textResults(variable){
         if(variable > 1){
             return 'scissors'
@@ -48,6 +48,7 @@ function playRound(){
     }
     let textUser = textResults(userChoice)
     let textPc = textResults(pcChoice)
+    console.log(roundResults)
     switch(roundResults){
         case 0:
             rounds++
@@ -76,7 +77,6 @@ function fullGame(){
         alert('End of Game. Draw!')
     }
 }
-
 
 
 
