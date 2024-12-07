@@ -1,6 +1,9 @@
 const rock = 0
 const paper = 1
 const scissors = 2
+let userScore = 0
+let pcScore = 0
+let rounds = 0
 
 function getComputerChoice(){
     const pcChoice = Math.floor(Math.random()*(Math.floor(1) - Math.ceil(4)) + Math.ceil(4))
@@ -17,7 +20,7 @@ function getComputerChoice(){
 function getUserChoice(){
     let userChoice
     do{
-        userChoice = prompt('Choose Rock, Paper or Scissors').toLocaleLowerCase()
+        userChoice = String(prompt('Choose Rock, Paper or Scissors')).toLowerCase()
     }
     while(userChoice != 'rock' && userChoice != 'paper' && userChoice != 'scissors')
     switch(userChoice){
@@ -47,23 +50,22 @@ function playRound(){
     let textPc = textResults(pcChoice)
     switch(roundResults){
         case 0:
+            rounds++
             return `Draw! Round ${rounds}/5`
         case 1:
+            rounds++
             pcScore++
             return `You lose! ${textPc} beats ${textUser}. Round ${rounds}/5`
         case 2:
+            rounds++
             userScore++
             return `You win! ${textUser} beats ${textPc}. Round ${rounds}/5`
     }
 }
 
 function fullGame(){
-    const userScore = 0
-    const pcScore = 0
-    const rounds = 0
     while(rounds < 5){
         let roundPlayed= playRound()
-        rounds++
         alert(roundPlayed)
     }
     if(userScore > pcScore){
@@ -74,5 +76,8 @@ function fullGame(){
         alert('End of Game. Draw!')
     }
 }
+
+
+
 
 fullGame()
